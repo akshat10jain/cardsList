@@ -4,12 +4,3 @@
 2. Run npm install
 3. Run :
     npm start 
-
-
-### Screenshots
-
-<table>
-  <tr>
-    <td><img src="./img.png"></td>
-    </tr>
-</table> 
