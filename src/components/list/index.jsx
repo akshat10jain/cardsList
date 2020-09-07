@@ -3,21 +3,22 @@ import { connect } from 'react-redux';
 import { getListAct } from "../../actions/listAction";
 import CardList from './cardList';
 import { Header, Footer } from '../common'
-import { DEAFULT_LIST_LIMIT, BASE_URL } from '../../config';
+import { DEAFULT_PAGE_LIMIT, DEAFULT_LIMIT, BASE_URL } from '../../config';
 import '../../css/list.css';
 
 const List = ({ getList, listData }) => {
 
-  const [next, setNext] = useState(3);
+  const [page, setPage] = useState(1);
   const [searchValue, setSearchValue] = useState('naruto');
 
   const fetchList = useCallback(() => {
     const params = {
-      limit: next,
-      q: searchValue
+      limit: DEAFULT_LIMIT,
+      q: searchValue,
+      page: page
     };
     getList(params);
-  }, [next, searchValue]);
+  }, [page, searchValue]);
 
   useEffect(() => {
     fetchList();
@@ -27,13 +28,13 @@ const List = ({ getList, listData }) => {
     ev.preventDefault();
     setSearchValue(searchValue);
     if (!searchValue) {
-      setNext(DEAFULT_LIST_LIMIT);
+      setPage(DEAFULT_PAGE_LIMIT);
     }
     fetchList();
   };
 
   const handleLoadMore = () => {
-    setNext(next + DEAFULT_LIST_LIMIT);
+    setPage(page + DEAFULT_PAGE_LIMIT);
   };
 
   const { results } = listData;
@@ -45,7 +46,7 @@ const List = ({ getList, listData }) => {
         <div className="title-url">
           {searchValue &&
             <p>Requesting:
-            <span> {BASE_URL}/search/anime?q={searchValue}&limit={next}</span>
+            <span> {BASE_URL}/search/anime?q={searchValue}&limit={16}&page={page}</span>
             </p>
           }
         </div>
