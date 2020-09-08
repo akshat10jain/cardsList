@@ -14,6 +14,11 @@ export default (state = initialState, action) => {
         ...state,
         listData: []
       };
+    case 'RESET_DATA':
+      return {
+        ...state,
+        listData: []
+      }
     default:
       return state;
   }

@@ -26,3 +26,7 @@ export const getListAct = (params) => (dispatch) => {
       });
     });
 };
+
+export const resetDataAct = () => ({
+  type: 'RESET_DATA',
+});
